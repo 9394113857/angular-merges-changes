@@ -6,7 +6,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
-  private apiUrl = 'https://learningsubjects3.pythonanywhere.com';
+
+  // private apiUrl = 'https://learningsubjects3.pythonanywhere.com';
+
+  private apiUrl = 'http://127.0.0.1:5000';
 
   constructor(private http: HttpClient) { }
 
