@@ -1,0 +1,1 @@
+Build completed successfully at Sun Jun 23 2024 09:19:37 GMT+0530 (India Standard Time): Define the API URL for production environment in login.service.ts file for flask.

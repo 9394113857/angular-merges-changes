@@ -8,10 +8,10 @@ import { Observable } from 'rxjs';
 export class LoginService {
 
   // Define the API URL for production environment
-  private apiUrl = 'https://learningsubjects3.pythonanywhere.com';
+  // private apiUrl = 'https://learningsubjects3.pythonanywhere.com';
 
 // Define the API URL for local development environment
-// private apiUrl = 'http://127.0.0.1:5000';
+  private apiUrl = 'http://127.0.0.1:5000';
 
   constructor(private http: HttpClient) { }
 
