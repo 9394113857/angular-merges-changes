@@ -8,13 +8,7 @@ import { LoginService } from '../login.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
   constructor(public rtr: Router, public srvc: LoginService) {}
 
   ngOnInit(): void {}
-
-  logout() {
-    this.srvc.logout();
-    this.rtr.navigate(['login']);
-  }
 }

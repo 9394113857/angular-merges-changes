@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
-
+  
   // Define the API URL for production environment
   private apiUrl = 'https://angularflask472.pythonanywhere.com/';
 

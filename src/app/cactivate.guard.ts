@@ -1,4 +1,3 @@
-// cactivate.guard.ts
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -8,7 +7,6 @@ import { LoginService } from './login.service';
   providedIn: 'root'
 })
 export class CactivateGuard implements CanActivate {
-
   constructor(private loginService: LoginService, private router: Router) {}
 
   canActivate(
