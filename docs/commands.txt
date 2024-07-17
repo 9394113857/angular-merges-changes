@@ -12,7 +12,7 @@ ctrl + c
 
 ===========================
 
-# Production-Command:-
+# Final Production-Command:-
 # Execute the build:prod script to build the Angular project for production:
 npm run build:prod
 
