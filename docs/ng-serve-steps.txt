@@ -1,0 +1,5 @@
+# Serve the Angular application and automatically open it in the default web browser
+ng serve --open
+
+# Serve the Angular application without automatically opening it in the web browser
+ng serve
