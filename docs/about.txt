@@ -1,0 +1,1 @@
+This angular and Backend flask jsut for register and login and then redirects different pages so this is the only functionality okay
