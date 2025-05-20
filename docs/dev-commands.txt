@@ -1,0 +1,2 @@
+# Start Angular dev server, wait 3 seconds, open Chrome, then wait 1 more second before loading the site
+Start-Process powershell -ArgumentList 'ng serve' ; Start-Sleep -Seconds 3 ; Start-Process "chrome.exe" ; Start-Sleep -Seconds 1 ; Start-Process "chrome.exe" "http://localhost:4200"
