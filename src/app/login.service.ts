@@ -7,20 +7,30 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
   
-  // Define the API URL for production environment
-  // private apiUrl = 'https://angularflask472.pythonanywhere.com/';
-
-  // Define the API URL for production environment from PythonANyWhere account:-
-  // private apiUrl = 'https://barlapudiraghunadh9.pythonanywhere.com/';
-
   // Define the API URL for local development environment
   private apiUrl = 'http://127.0.0.1:5000';
 
   constructor(private http: HttpClient) { }
 
-  register(username: string, password: string): Observable<any> {
+  // Register method now accepts all fields and sends as JSON body to Flask backend
+  register(
+    username: string, 
+    password: string, 
+    name?: string, 
+    email?: string, 
+    phone?: string, 
+    address?: string
+  ): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const body = { username, password };
+
+    // Prepare the request body with all available fields
+    const body: any = { username, password };
+
+    if (name) body.name = name;
+    if (email) body.email = email;
+    if (phone) body.phone = phone;
+    if (address) body.address = address;
+
     return this.http.post(`${this.apiUrl}/register`, body, { headers });
   }
 
