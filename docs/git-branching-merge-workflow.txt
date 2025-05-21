@@ -1,0 +1,51 @@
+# Step 1: Create and switch to a new branch for your feature-related work
+# (File context: all your current changes related to the feature)
+git checkout -b feature-branch
+
+# Step 2: Stage all your changes for commit
+git add .
+
+# Step 3: Commit your changes with a clear message
+git commit -m "Save feature-related changes temporarily"
+
+# Step 4: Push this new branch to remote repository
+git push origin feature-branch
+
+# Explanation for Steps 1-4:
+# 1. You create a new branch (feature-branch) to isolate your feature work.
+# 2. You commit the changes to save your progress.
+# 3. Pushing the branch to the remote ensures that your work is safely backed up and accessible to others.
+
+# Step 5: Switch back to the main or working branch
+git checkout main  # or use: git checkout working-branch
+
+# Step 6: Discard any uncommitted changes to restore a clean state in the main/working branch
+git reset --hard
+git clean -fd
+
+# Step 7: Pull the latest updates from remote main/working branch
+git pull origin main  # or use: git pull origin working-branch
+
+# Explanation for Steps 5-7:
+# 4. You switch back to your main/working branch to continue development without interference from feature work.
+# 5. You clean up uncommitted changes to ensure you're working with a clean slate.
+# 6. Pulling the latest updates makes sure you're up-to-date with any changes others may have pushed.
+
+# Step 8: When ready, merge your feature-branch back into the main/working branch
+git merge feature-branch
+
+# Step 9: Resolve any merge conflicts if they occur, then commit the merge if needed
+# (Optional, depends on conflicts)
+# git commit -m "Merge feature-branch into main/working-branch"
+
+# Step 10: Push the merged branch back to remote repository
+git push origin main  # or use: git push origin working-branch
+
+# Explanation for Steps 8-10:
+# 7. When your feature work is ready, you merge it back into the main/working branch.
+# 8. If there are merge conflicts, resolve them manually before committing the merge.
+# 9. Finally, you push the merged branch back to the remote repository to share your changes with the team.
+
+# Summary:
+# - This workflow ensures that feature work is isolated and can be merged back into the main/working branch when it's ready.
+# - It helps avoid conflicts and keeps your main/working branch clean while enabling collaboration.
