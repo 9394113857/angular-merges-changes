@@ -1,0 +1,15 @@
+<h1>User Profile</h1>
+<app-logout-button></app-logout-button>
+
+<div *ngIf="userProfile; else loadingOrError">
+  <p><strong>Username:</strong> {{ userProfile.username }}</p>
+  <p><strong>Name:</strong> {{ userProfile.name }}</p>
+  <p><strong>Email:</strong> {{ userProfile.email }}</p>
+  <p><strong>Phone:</strong> {{ userProfile.phone }}</p>
+  <p><strong>Address:</strong> {{ userProfile.address }}</p>
+</div>
+
+<ng-template #loadingOrError>
+  <p *ngIf="errorMsg" style="color:red;">{{ errorMsg }}</p>
+  <p *ngIf="!errorMsg">Loading profile...</p>
+</ng-template>

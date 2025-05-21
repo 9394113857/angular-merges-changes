@@ -6,26 +6,21 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
-  
-  // Define the API URL for local development environment
+
   private apiUrl = 'http://127.0.0.1:5000';
 
   constructor(private http: HttpClient) { }
 
-  // Register method now accepts all fields and sends as JSON body to Flask backend
   register(
-    username: string, 
-    password: string, 
-    name?: string, 
-    email?: string, 
-    phone?: string, 
+    username: string,
+    password: string,
+    name?: string,
+    email?: string,
+    phone?: string,
     address?: string
   ): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-
-    // Prepare the request body with all available fields
     const body: any = { username, password };
-
     if (name) body.name = name;
     if (email) body.email = email;
     if (phone) body.phone = phone;
@@ -50,5 +45,12 @@ export class LoginService {
 
   public isLoggedIn(): boolean {
     return localStorage.getItem('access_token') !== null;
+  }
+
+  getProfile(): Observable<any> {
+    const token = localStorage.getItem('access_token');
+    if (!token) throw new Error('No token found');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(`${this.apiUrl}/profile`, { headers });
   }
 }

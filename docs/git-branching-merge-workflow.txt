@@ -1,0 +1,34 @@
+# git-branching-merge-workflow.txt
+
+# Step 1: Save your current profile-related work on a new branch
+git checkout -b profile-feature
+
+# Step 2: Add and commit your profile changes
+git add .
+git commit -m "Add profile feature - initial commit"
+
+# Step 3: Push the new profile branch to remote
+git push origin profile-feature
+
+# Step 4: Switch back to your original experiments branch
+git checkout experiments
+
+# Step 5: Pull the latest changes from remote experiments branch to restore old version
+git pull origin experiments
+
+# Step 6: Work on experiments branch as needed without losing your profile changes which are saved in profile-feature branch
+
+# Step 7: When ready, merge profile-feature branch into experiments or main branch
+git checkout experiments  # or main
+git merge profile-feature
+
+# Step 8: Resolve any merge conflicts if they arise
+
+# Step 9: Push the merged branch back to remote
+git push origin experiments  # or main
+
+# Summary:
+# - You create a new branch (profile-feature) to save your ongoing work.
+# - Push that branch to remote to keep a backup.
+# - Switch back to experiments branch and pull to restore old code.
+# - Merge branches later after testing and verification.

@@ -6,13 +6,16 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { CactivateGuard } from './cactivate.guard';
 import { TestComponent } from './test/test.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },  // Redirect empty path to login
   { path: 'home', component: HomeComponent, canActivate: [CactivateGuard] },
-  { path: 'test', component: TestComponent, canActivate: [CactivateGuard]},
+  { path: 'test', component: TestComponent, canActivate: [CactivateGuard] },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent }
+  { path: 'register', component: RegisterComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [CactivateGuard] },
+  { path: '**', redirectTo: '/login' }  // Wildcard route to catch unknown paths
 ];
 
 @NgModule({

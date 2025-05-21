@@ -4,14 +4,13 @@ import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-logout-button',
-  templateUrl: './logout-button.component.html',
-  styleUrls: ['./logout-button.component.css']
+  template: `<button (click)="logout()">Logout</button>`
 })
 export class LogoutButtonComponent {
   constructor(private loginService: LoginService, private router: Router) {}
 
   logout() {
     this.loginService.logout();
-    this.router.navigate(['login']);
+    this.router.navigate(['/login']);
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { LoginService } from '../login.service';
 import { Router } from '@angular/router';
+import { LoginService } from '../login.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -9,26 +9,33 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  loginForm!: FormGroup;
+  errorMsg: string = '';
 
-  constructor(public srvc: LoginService, public rtr: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private loginService: LoginService,
+    private router: Router
+  ) {}
 
-  ngOnInit(): void {}
-
-  loginForm = new FormGroup({
-    uname: new FormControl('', [Validators.required]),
-    pwd: new FormControl('', [Validators.required])
-  });
+  ngOnInit(): void {
+    this.loginForm = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+  }
 
   onSubmit() {
-    const uname = this.loginForm.value.uname!;
-    const pwd = this.loginForm.value.pwd!;
-    this.srvc.login(uname, pwd).subscribe(
-      response => {
-        this.srvc.setSession(response);
-        this.rtr.navigate(['home']);
+    if (this.loginForm.invalid) return;
+
+    const { username, password } = this.loginForm.value;
+    this.loginService.login(username, password).subscribe(
+      (res) => {
+        this.loginService.setSession(res);
+        this.router.navigate(['/profile']);  // navigate to profile after login
       },
-      error => {
-        alert('Invalid User..');
+      (err) => {
+        this.errorMsg = 'Invalid username or password';
       }
     );
   }
