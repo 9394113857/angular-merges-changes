@@ -10,7 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { TestComponent } from './test/test.component';
 import { LogoutButtonComponent } from './logout-button/logout-button.component';
-import { CactivateGuard } from './cactivate.guard';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,8 @@ import { CactivateGuard } from './cactivate.guard';
     LoginComponent,
     RegisterComponent,
     TestComponent,
-    LogoutButtonComponent
+    LogoutButtonComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
