@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
 
-
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -12,5 +11,4 @@ export class ProfileComponent implements OnInit {
   constructor(public rtr: Router, public srvc: LoginService) {}
 
   ngOnInit(): void {}
-
 }

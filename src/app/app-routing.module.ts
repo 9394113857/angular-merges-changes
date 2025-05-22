@@ -7,7 +7,6 @@ import { RegisterComponent } from './register/register.component';
 import { CactivateGuard } from './cactivate.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { TestComponent } from './test/test.component';
-import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },  // Redirect empty path to login
