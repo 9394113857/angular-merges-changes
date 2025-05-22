@@ -1,0 +1,47 @@
+# Got it! Here's a clean, well-commented summary of all the important Git commands you used for merging 
+# the experiments branch into your profile-feature branch with conflict resolution 
+# by overriding with experiments changes — all in one block for easy reference:
+
+# Step 1: Switch to the target branch where you want to merge changes
+git checkout profile-feature
+
+# Step 2: Create a backup branch before merging, to save current state safely
+git branch backup-profile-feature-before-merge
+
+# Step 3: Attempt to merge 'experiments' branch into 'profile-feature'
+git merge experiments
+# You may encounter merge conflicts here:
+#   Git will report conflicts like:
+#     CONFLICT (add/add): Merge conflict in <file>
+#     CONFLICT (content): Merge conflict in <file>
+
+# Step 4: To resolve conflicts by overriding all changes with 'experiments' branch's version, 
+# use the recursive strategy with 'theirs' option:
+git merge -s recursive -X theirs experiments
+
+# Explanation:
+#   -s recursive: Use the default recursive merge strategy
+#   -X theirs: Automatically choose 'theirs' changes on conflicts (i.e., from 'experiments' branch)
+
+# Step 5: If Git opens an editor asking for a commit message (MERGE_MSG),
+# simply save and close the editor to finalize the merge commit.
+#   In vim, for example:
+#     - Press `i` to enter insert mode and edit the message if needed
+#     - Press `ESC` then type `:wq` and press Enter to save and quit
+
+# Step 6: Verify the working tree is clean and merge completed successfully
+git status
+
+# Step 7: Confirm merge commit by checking the latest commits
+git log --oneline -2
+
+# Step 8 (Optional): Push the updated branch with merged changes to remote repository
+git push origin profile-feature
+
+# Summary of key points:
+#   - Conflicts appeared because both branches modified same files.
+#   - Using git merge -s recursive -X theirs tells Git to pick experiments changes automatically where conflicts appear.
+#   - Commit message for the merge is required — save and exit editor.
+#   - Backup branch created for safety before merge.
+#   - git status and git log confirm the final state.
+#   - Push changes to remote when ready.
