@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  errorMessage: string | null = null;
 
   // Form group with all required fields for registration
   registerForm = new FormGroup({
@@ -37,24 +38,25 @@ export class RegisterComponent implements OnInit {
    * On failure, an error alert is shown.
    */
   onSubmit(): void {
-    const formValue = this.registerForm.value;
-    this.loginService.register(
-  formValue.username!,
-  formValue.password!,
-  formValue.name ?? undefined, 
-  formValue.email ?? undefined,
-  formValue.phone ?? undefined,
-  formValue.address ?? undefined
-).subscribe( // This converts null to undefined, which matches the parameter type.
+  const formValue = this.registerForm.value;
+  this.loginService.register(
+    formValue.username!,
+    formValue.password!,
+    formValue.name ?? undefined,
+    formValue.email ?? undefined,
+    formValue.phone ?? undefined,
+    formValue.address ?? undefined
+  ).subscribe(
+    // Handle successful registration
+    response => {
+      alert('Registration successful');
+      this.router.navigate(['/login']);
+    },
+    error => {
+      // Handle error (this is the error sent from the backend)
+      alert(error); // This will show the message returned from the backend, such as "Username already taken"
+    }
+  );
+}
 
-      // Handle successful registration
-      response => {
-        alert('Registration successful');
-        this.router.navigate(['/login']);
-      },
-      error => {
-        alert('Registration failed');
-      }
-    );
-  }
 }

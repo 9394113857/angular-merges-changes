@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,22 +13,30 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   register(
-    username: string,
-    password: string,
-    name?: string,
-    email?: string,
-    phone?: string,
-    address?: string
-  ): Observable<any> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const body: any = { username, password };
-    if (name) body.name = name;
-    if (email) body.email = email;
-    if (phone) body.phone = phone;
-    if (address) body.address = address;
+  username: string,
+  password: string,
+  name?: string,
+  email?: string,
+  phone?: string,
+  address?: string
+): Observable<any> {
+  const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+  const body: any = { username, password };
+  if (name) body.name = name;
+  if (email) body.email = email;
+  if (phone) body.phone = phone;
+  if (address) body.address = address;
 
-    return this.http.post(`${this.apiUrl}/register`, body, { headers });
-  }
+  return this.http.post(`${this.apiUrl}/register`, body, { headers }).pipe(
+    catchError((error) => {
+      // Handle error response from the backend
+      if (error.status === 400) {
+        return throwError(error.error.message); // Extract the message from the response
+      }
+      return throwError('An error occurred. Please try again.');
+    })
+  );
+}
 
   login(username: string, password: string): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });

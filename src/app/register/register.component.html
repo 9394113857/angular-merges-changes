@@ -19,3 +19,8 @@
 
   <button type="submit">Register</button>
 </form>
+
+<!-- Display error message dynamically -->
+<div *ngIf="errorMessage" class="error-message">
+  {{ errorMessage }}
+</div>
