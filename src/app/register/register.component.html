@@ -17,10 +17,10 @@
   <label for="address">Address:</label>
   <input id="address" formControlName="address" type="text">
 
-  <button type="submit">Register</button>
+  <button type="submit" [disabled]="registerForm.invalid">Register</button>
 </form>
 
 <!-- Display error message dynamically -->
-<div *ngIf="errorMessage" class="error-message">
+<div *ngIf="errorMessage" class="error-message" style="color:red;">
   {{ errorMessage }}
 </div>

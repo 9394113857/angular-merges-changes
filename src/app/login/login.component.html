@@ -10,4 +10,5 @@
   <button type="submit" [disabled]="loginForm.invalid">Login</button>
 </form>
 
+<!-- Show server/network error -->
 <div *ngIf="errorMsg" style="color:red;">{{ errorMsg }}</div>

@@ -32,10 +32,10 @@ export class LoginComponent implements OnInit {
     this.loginService.login(username, password).subscribe(
       (res) => {
         this.loginService.setSession(res);
-        this.router.navigate(['/profile']);  // navigate to profile after login
+        this.router.navigate(['/profile']);
       },
-      (err) => {
-        this.errorMsg = 'Invalid username or password';
+      (err: Error) => {
+        this.errorMsg = err.message;
       }
     );
   }
