@@ -7,7 +7,15 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
 
-  private apiUrl = 'https://pythonfamilyacc.pythonanywhere.com';
+  // For Production:-
+  // private apiUrl = 'https://pythonfamilyacc.pythonanywhere.com';
+  
+  // Alternative Production URL:-
+  private apiUrl = 'https://railway-flask-backend-production.up.railway.app/';
+
+  // For Development:-  
+  // private apiUrl = 'http://127.0.0.1:5000';
+  
 
   constructor(private http: HttpClient) { }
 
